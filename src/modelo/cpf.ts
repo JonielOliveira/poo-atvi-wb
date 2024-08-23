@@ -11,4 +11,9 @@ export default class CPF {
     public get getDataEmissao(): Date {
         return this.dataEmissao
     }
+
+    public equals(cpf: CPF): boolean {
+        return this.valor === cpf.getValor;
+    }
+
 }

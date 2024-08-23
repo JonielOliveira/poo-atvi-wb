@@ -27,4 +27,23 @@ export default class CadastroCliente extends Cadastro {
         this.clientes.push(cliente)
         console.log(`\nCadastro concluído :)\n`);
     }
+
+    public remover(): void {
+        console.log(`\nInício da remoção do cliente`);
+        let cpfValor = this.entrada.receberTexto(`Por favor informe o número do CPF do cliente a ser removido: `);
+        let cpf = new CPF(cpfValor, new Date());
+        
+        let index = this.clientes.findIndex(cliente => cliente.getCpf.equals(cpf));
+        
+        if (index !== -1) {
+            this.clientes.splice(index, 1);
+            console.log(`\nCliente removido com sucesso :)\n`);
+        } else {
+            console.log(`\nCliente com o CPF informado não encontrado.\n`);
+        }
+    }
+
+
+
+
 }
