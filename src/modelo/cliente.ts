@@ -5,8 +5,8 @@ import Servico from "./servico"
 import Telefone from "./telefone"
 
 export default class Cliente {
-    public nome: string
-    public nomeSocial: string
+    private nome: string
+    private nomeSocial: string
     private cpf: CPF
     private rgs: Array<RG>
     private dataCadastro: Date
@@ -22,6 +22,18 @@ export default class Cliente {
         this.telefones = []
         this.produtosConsumidos = []
         this.servicosConsumidos = []
+    }
+    public get getNome(): string {
+        return this.nome
+    }
+    public set setNome(nome: string) {
+        this.nome = nome
+    }
+    public get getNomeSocial(): string {
+        return this.nomeSocial
+    }
+    public set setNomeSocial(nomeSocial: string) {
+        this.nomeSocial = nomeSocial
     }
     public get getCpf(): CPF {
         return this.cpf

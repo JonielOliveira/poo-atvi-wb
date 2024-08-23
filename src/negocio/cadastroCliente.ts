@@ -43,6 +43,31 @@ export default class CadastroCliente extends Cadastro {
         }
     }
 
+    public atualizar(): void {
+        console.log(`\nInício da atualização do cliente`);
+        let cpfValor = this.entrada.receberTexto(`Por favor informe o número do CPF do cliente a ser atualizado: `);
+        let cpf = new CPF(cpfValor, new Date());
+
+        let index = this.clientes.findIndex(cliente => cliente.getCpf.equals(cpf));
+
+        if (index === -1) {
+            console.log(`\nCliente com o CPF informado não encontrado.\n`);
+            return;
+        }
+
+        let cliente = this.clientes[index];
+        let novoNome = this.entrada.receberTexto(`Novo nome do cliente (deixe em branco para manter ${cliente.getNome}): `);
+        let novoNomeSocial = this.entrada.receberTexto(`Novo nome social do cliente (deixe em branco para manter ${cliente.getNomeSocial}): `);
+
+        if (novoNome) cliente.setNome = novoNome;
+        if (novoNomeSocial) cliente.setNomeSocial = novoNomeSocial;
+
+        console.log(`\nAtualização concluída :)\n`);
+    }
+
+
+
+
 
 
 

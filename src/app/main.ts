@@ -12,6 +12,7 @@ while (execucao) {
     console.log(`1 - Cadastrar cliente`);
     console.log(`2 - Listar todos os clientes`);
     console.log(`3 - Remover cliente`);
+    console.log(`4 - Atualizar cliente`);
     console.log(`0 - Sair`);
 
     let entrada = new Entrada()
@@ -29,6 +30,10 @@ while (execucao) {
         case 3:
             let cadastro2 = new CadastroCliente(empresa.getClientes)
             cadastro2.remover()
+            break;
+        case 4:
+            let cadastro3 = new CadastroCliente(empresa.getClientes)
+            cadastro3.atualizar()
             break;
         case 0:
             execucao = false
