@@ -2,9 +2,9 @@
   "name": "atvi-wb",
   "version": "1.0.0",
   "description": "Repositório com códigos de auxílio para o desenvolvimento de uma agenda de cadastro de clientes, em TypeScript. Os códigos são para auxílio da ATVI da disciplina de Programação Orientada a Objetos.",
-  "main": "out/app/main.js",
+  "main": "out/app/app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -21,5 +21,10 @@
     "@types/node": "^20.16.0",
     "@types/prompt-sync": "^4.1.1",
     "prompt-sync": "^4.2.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.12",
+    "jest": "^29.0.0",
+    "ts-jest": "^29.0.0"
   }
 }

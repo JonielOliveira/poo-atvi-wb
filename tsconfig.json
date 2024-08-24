@@ -11,6 +11,11 @@
     "noImplicitAny": false
   },
   "include": [
-    "src/**/*"
-  ]
+    "src/**/*",
+    "test/**/*"
+  ],
+  "scripts": {
+    "prebuild": "tsc --build --clean",
+    "build": "tsc --build"
+  }
 }
