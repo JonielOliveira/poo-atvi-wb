@@ -11,6 +11,9 @@ export default class CadastroCliente extends Cadastro {
         this.clientes = clientes
         this.entrada = new Entrada()
     }
+
+    // CRUD (Create, Read, Update e Delete)
+    // Create:
     public cadastrar(): void {
         console.log(`\nInício do cadastro do cliente`);
         let nome = this.entrada.receberTexto(`Por favor informe o nome do cliente: `)
@@ -28,21 +31,29 @@ export default class CadastroCliente extends Cadastro {
         console.log(`\nCadastro concluído :)\n`);
     }
 
-    public remover(): void {
-        console.log(`\nInício da remoção do cliente`);
-        let cpfValor = this.entrada.receberTexto(`Por favor informe o número do CPF do cliente a ser removido: `);
+    // Read:
+    public consultar(): void {
+        console.log(`\nConsulta de cliente`);
+        let cpfValor = this.entrada.receberTexto(`Por favor informe o número do CPF do cliente a ser consultado: `);
         let cpf = new CPF(cpfValor, new Date());
-        
-        let index = this.clientes.findIndex(cliente => cliente.getCpf.equals(cpf));
-        
-        if (index !== -1) {
-            this.clientes.splice(index, 1);
-            console.log(`\nCliente removido com sucesso :)\n`);
+
+        // Encontra o cliente com o CPF fornecido
+        let cliente = this.clientes.find(cliente => cliente.getCpf.equals(cpf));
+
+        if (cliente) {
+            console.log(`\nInformações do cliente:`);
+            console.log(`Nome: ${cliente.getNome}`);
+            console.log(`Nome Social: ${cliente.getNomeSocial}`);
+            console.log(`CPF: ${cliente.getCpf.getValor}`);
+            console.log(`Data de Emissão do CPF: ${cliente.getCpf.getDataEmissao.toLocaleDateString()}`);
+            // Adicione aqui qualquer outra informação relevante do cliente
+            console.log(`\nConsulta concluída.\n`);
         } else {
             console.log(`\nCliente com o CPF informado não encontrado.\n`);
         }
     }
 
+    // Update:
     public atualizar(): void {
         console.log(`\nInício da atualização do cliente`);
         let cpfValor = this.entrada.receberTexto(`Por favor informe o número do CPF do cliente a ser atualizado: `);
@@ -65,10 +76,20 @@ export default class CadastroCliente extends Cadastro {
         console.log(`\nAtualização concluída :)\n`);
     }
 
-
-
-
-
-
+    // Delete:
+    public remover(): void {
+        console.log(`\nInício da remoção do cliente`);
+        let cpfValor = this.entrada.receberTexto(`Por favor informe o número do CPF do cliente a ser removido: `);
+        let cpf = new CPF(cpfValor, new Date());
+        
+        let index = this.clientes.findIndex(cliente => cliente.getCpf.equals(cpf));
+        
+        if (index !== -1) {
+            this.clientes.splice(index, 1);
+            console.log(`\nCliente removido com sucesso :)\n`);
+        } else {
+            console.log(`\nCliente com o CPF informado não encontrado.\n`);
+        }
+    }
 
 }
