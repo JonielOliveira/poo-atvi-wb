@@ -1,29 +1,28 @@
 import Entrada from "../io/entrada";
-import Empresa from "../modelo/empresa"
-import CadastroCliente from "../negocio/cadastroCliente";
-import ListagemClientes from "../negocio/listagemClientes";
+import Cliente from "../modelo/cliente";
+import CadastroTelefone from "../negocio/cadastroTelefone";
+import ListagemTelefones from "../negocio/listagemTelefones";
 
-export function runApplication(prompt: (question: string) => string) {
-
-    console.log(`Bem-vindo ao cadastro de clientes do Grupo World Beauty`)
-    let empresa = new Empresa()
-    let execucao = true
+export default function telaTelefones(cliente: Cliente) {
+    
+    console.log(`Bem-vindo ao cadastro de telefones`);
+    let execucao = true;
 
     while (execucao) {
         console.log(`Opções:`);
         
-        console.log(`1 - Cadastrar cliente`);
-        console.log(`2 - Listar todos os clientes`);
-        console.log(`3 - Remover cliente`);
-        console.log(`4 - Atualizar cliente`);
-        console.log(`5 - Consultar cliente`);
+        console.log(`1 - Cadastrar telefone`);
+        console.log(`2 - Listar todos os telefones`);
+        console.log(`3 - Remover telefone`);
+        console.log(`4 - Atualizar telefone`);
+        console.log(`5 - Consultar telefone`);
         console.log(`0 - Sair`);
 
         let entrada = new Entrada()
         let opcao = entrada.receberNumero(`Por favor, escolha uma opção: `)
 
-        let cadastro = new CadastroCliente(empresa.getClientes);
-        let listagem = new ListagemClientes(empresa.getClientes);
+        let cadastro = new CadastroTelefone(cliente.getTelefones);
+        let listagem = new ListagemTelefones(cliente.getTelefones);
 
         switch (opcao) {
             case 1:

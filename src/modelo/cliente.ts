@@ -41,11 +41,17 @@ export default class Cliente {
     public get getRgs(): Array<RG> {
         return this.rgs
     }
+    public set setRgs(rgs: Array<RG>) {
+        this.rgs = rgs;
+    }
     public get getDataCadastro(): Date {
         return this.dataCadastro
     }
     public get getTelefones(): Array<Telefone> {
         return this.telefones
+    }
+    public set setTelefones(telefones: Array<Telefone>) {
+        this.telefones = telefones
     }
     public get getProdutosConsumidos(): Array<Produto> {
         return this.produtosConsumidos

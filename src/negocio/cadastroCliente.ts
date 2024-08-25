@@ -2,6 +2,8 @@ import Entrada from "../io/entrada";
 import Cliente from "../modelo/cliente";
 import CPF from "../modelo/cpf";
 import Cadastro from "./cadastro";
+import telaTelefones from "../app/telaTelefone";
+import ListagemTelefones from "./listagemTelefones";
 
 export default class CadastroCliente extends Cadastro {
     private clientes: Array<Cliente>
@@ -46,7 +48,10 @@ export default class CadastroCliente extends Cadastro {
             console.log(`Nome Social: ${cliente.getNomeSocial}`);
             console.log(`CPF: ${cliente.getCpf.getValor}`);
             console.log(`Data de Emissão do CPF: ${cliente.getCpf.getDataEmissao.toLocaleDateString()}`);
-            // Adicione aqui qualquer outra informação relevante do cliente
+            
+            let telefones = new ListagemTelefones(cliente.getTelefones);
+            telefones.listar();
+            
             console.log(`\nConsulta concluída.\n`);
         } else {
             console.log(`\nCliente com o CPF informado não encontrado.\n`);
@@ -72,6 +77,12 @@ export default class CadastroCliente extends Cadastro {
 
         if (novoNome) cliente.setNome = novoNome;
         if (novoNomeSocial) cliente.setNomeSocial = novoNomeSocial;
+
+        let resposta = this.entrada.receberTexto(`Atualizar informações de telefone? (sim | não): `);
+        resposta.toLowerCase();
+        if (resposta === "sim" || resposta === "yes") {
+            telaTelefones(cliente);
+        }
 
         console.log(`\nAtualização concluída :)\n`);
     }
