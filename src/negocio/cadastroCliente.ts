@@ -6,6 +6,8 @@ import telaRg from "../app/telaRg";
 import ListagemRgs from "./listagemRgs";
 import telaTelefone from "../app/telaTelefone";
 import ListagemTelefones from "./listagemTelefones";
+import telaProduto from "../app/telaProduto";
+import ListagemProdutos from "./listagemProdutos";
 
 export default class CadastroCliente extends Cadastro {
     private clientes: Array<Cliente>
@@ -32,7 +34,7 @@ export default class CadastroCliente extends Cadastro {
         let cpf = new CPF(valor, dataEmissao);
         let cliente = new Cliente(nome, nomeSocial, cpf);
         this.clientes.push(cliente)
-        console.log(`\nCadastro concluído :)\n`);
+        console.log(`\nCadastro concluído!\n`);
     }
 
     // Read:
@@ -56,6 +58,9 @@ export default class CadastroCliente extends Cadastro {
 
             let telefones = new ListagemTelefones(cliente.getTelefones);
             telefones.listar();
+
+            let produtos = new ListagemProdutos(cliente.getProdutosConsumidos);
+            produtos.listar();
             
             console.log(`\nConsulta concluída.\n`);
         } else {
@@ -93,6 +98,12 @@ export default class CadastroCliente extends Cadastro {
         resposta.toLowerCase();
         if (resposta === "sim" || resposta === "yes") {
             telaTelefone(cliente);
+        }
+
+        resposta = this.entrada.receberTexto(`Atualizar informações de produto? (sim | não): `);
+        resposta.toLowerCase();
+        if (resposta === "sim" || resposta === "yes") {
+            telaProduto(cliente);
         }
 
         console.log(`\nAtualização concluída :)\n`);
