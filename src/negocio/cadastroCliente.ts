@@ -8,6 +8,8 @@ import telaTelefone from "../app/telaTelefone";
 import ListagemTelefones from "./listagemTelefones";
 import telaProduto from "../app/telaProduto";
 import ListagemProdutos from "./listagemProdutos";
+import telaServico from "../app/telaServico";
+import ListagemServicos from "./listagemServicos";
 
 export default class CadastroCliente extends Cadastro {
     private clientes: Array<Cliente>
@@ -61,6 +63,9 @@ export default class CadastroCliente extends Cadastro {
 
             let produtos = new ListagemProdutos(cliente.getProdutosConsumidos);
             produtos.listar();
+
+            let servicos = new ListagemServicos(cliente.getServicosConsumidos);
+            servicos.listar();
             
             console.log(`\nConsulta concluída.\n`);
         } else {
@@ -104,6 +109,12 @@ export default class CadastroCliente extends Cadastro {
         resposta.toLowerCase();
         if (resposta === "sim" || resposta === "yes") {
             telaProduto(cliente);
+        }
+
+        resposta = this.entrada.receberTexto(`Atualizar informações de serviço? (sim | não): `);
+        resposta.toLowerCase();
+        if (resposta === "sim" || resposta === "yes") {
+            telaServico(cliente);
         }
 
         console.log(`\nAtualização concluída :)\n`);
