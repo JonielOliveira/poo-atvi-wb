@@ -22,7 +22,7 @@ export default class Telefone {
     public set setNumero(numero: string) {
         this.numero = this.filtrarNumero(numero);
     }
-    
+
     private filtrarDDD(input: string): string {
         // Remove todos os caracteres que não são dígitos (0-9)
         let ddd = input.replace(/\D/g, '');
@@ -52,7 +52,7 @@ export default class Telefone {
 
     }
 
-    toString(): string {
+    public toString(): string {
         // Divide a string em partes e adiciona o hífen
         const part1 = this.numero.substring(0, 5); // '98888'
         const part2 = this.numero.substring(5);    // '7777'

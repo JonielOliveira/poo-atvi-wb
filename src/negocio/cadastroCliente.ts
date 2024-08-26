@@ -2,7 +2,9 @@ import Entrada from "../io/entrada";
 import Cliente from "../modelo/cliente";
 import CPF from "../modelo/cpf";
 import Cadastro from "./cadastro";
-import telaTelefones from "../app/telaTelefone";
+import telaRg from "../app/telaRg";
+import ListagemRgs from "./listagemRgs";
+import telaTelefone from "../app/telaTelefone";
 import ListagemTelefones from "./listagemTelefones";
 
 export default class CadastroCliente extends Cadastro {
@@ -49,6 +51,9 @@ export default class CadastroCliente extends Cadastro {
             console.log(`CPF: ${cliente.getCpf.getValor}`);
             console.log(`Data de Emissão do CPF: ${cliente.getCpf.getDataEmissao.toLocaleDateString()}`);
             
+            let rgs = new ListagemRgs(cliente.getRgs);
+            rgs.listar();
+
             let telefones = new ListagemTelefones(cliente.getTelefones);
             telefones.listar();
             
@@ -78,10 +83,16 @@ export default class CadastroCliente extends Cadastro {
         if (novoNome) cliente.setNome = novoNome;
         if (novoNomeSocial) cliente.setNomeSocial = novoNomeSocial;
 
-        let resposta = this.entrada.receberTexto(`Atualizar informações de telefone? (sim | não): `);
+        let resposta = this.entrada.receberTexto(`Atualizar informações de RG? (sim | não): `);
         resposta.toLowerCase();
         if (resposta === "sim" || resposta === "yes") {
-            telaTelefones(cliente);
+            telaRg(cliente);
+        }
+
+        resposta = this.entrada.receberTexto(`Atualizar informações de telefone? (sim | não): `);
+        resposta.toLowerCase();
+        if (resposta === "sim" || resposta === "yes") {
+            telaTelefone(cliente);
         }
 
         console.log(`\nAtualização concluída :)\n`);
